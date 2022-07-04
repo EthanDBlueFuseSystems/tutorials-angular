@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- local reference for ngForm and pass reference into submit function -->
+      <form (ngSubmit)="submit(f)" #f="ngForm">
+
+        <!-- Holds user data in group -->
+        <div ngModelGroup="userData">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-control"
+              ngModel
+              email 
+              required
+              #email="ngModel">
+              <!-- if the email is not valid -->
+              <!-- Need local reference to check if email is valid -->
+              <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email address</span>
+
+
+              <label for="password">Password</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                class="form-control"
+                ngModel
+                required
+                #password="ngModel">
+              <!-- If an invalid password was entered -->
+              <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password</span>
+          </div>
+
+           <!-- Selection box -->
+          <div class="form-group">
+            <label for="subscription">Select Subscription type</label>
+            <select 
+              id="subscription"
+              class="form-control" 
+              [ngModel]="defaultSubscription"
+              name="subscription">
+                <option value="basic">Basic</option>
+                <option value="advanced">Advanced</option>
+                <option value="pro">Pro</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" >Submit</button>
+
+      </form>
+
+      <div class="row" *ngIf="formSubmitted">
+        <div class="col-xs-12">
+          <h3><u>Submitted Data: </u></h3>
+          <p>Username: {{submittedUserData.email}}</p>
+          <p>Password: {{submittedUserData.password}}</p>
+          <p>Subscription type: {{submittedUserData.subscription}}</p>
+        </div>
+      </div>
+
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different Subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+    </div>
+  </div>
+</div>

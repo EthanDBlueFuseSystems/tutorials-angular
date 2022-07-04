@@ -1,0 +1,8 @@
+input.ng-invalid{
+    border: 1px solid red;
+}
+
+span.help-block{
+    color: white;
+    background-color: red;
+}
